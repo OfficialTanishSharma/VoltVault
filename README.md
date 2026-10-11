@@ -93,19 +93,47 @@ Subterranean Vault Temp:   Dampened within geothermal tolerance (< +0.4 deg C ri
 Structural Integrity:     100% (Subterranean soil containment prevented shockwave rupture)
 ```
 
+### Core Formulation Setup (Linear Physics Model):
+```python
+# VoltVault System Transient Buffer Simulation
+# Kirchhoff's Current Law for multi-branch capacitive division
+
+import math
+
+def simulate_lightning_shunt(v_peak=100e6, i_peak=30000, branches=500):
+    # Damping effect through Air-Core Inductive Choke (Back-EMF suppression)
+    blunted_current = i_peak * math.exp(-0.05) # Inductive attenuation decay
+    
+    # Division of massive transient current across parallel Graphene Supercapacitors
+    current_per_branch = blunted_current / branches
+    return current_per_branch
+```
+
 ---
 
-## 📑 Specification
+## 📑 Hardware Interface & Baseline Parameters
 
 Full technical registers, dielectric limits, and memory mapping are documented in:
 👉 [SPEC-01: Subterranean Lightning Harvester Specification](./specification/SPEC-01-LIGHTNING-HARVESTER.md)
 
+### Defensive Baseline Lock Parameters:
+| Parameter Key | Baseline Value | Engineering Function |
+| :--- | :---: | :--- |
+| `V_TRIG_THRESHOLD` | `50,000 V` | Spark gap plasma ignition clamp threshold |
+| `I_PEAK_RATING` | `30,000 A` | Nominal return stroke current handling |
+| `L_CHOKE_INDUCTANCE`| `0.05 H` | Air-core back-EMF inductive decay choke |
+| `N_SHUNT_BRANCHES` | `128 - 500` | Parallel Kirchhoff capacitive division lines |
+| `ATTENUATION_DECAY`| `0.05` | Inductive transient attenuation factor |
+| `EMP_FARADAY_SHIELD`| `80 dB` | Subterranean vault attenuation @ 100 MHz |
+
 ---
 
-## ⚖️ Legal & Prior Art Defense
+## ⚖️ Legal & Defensive Bitstream Ledger Notice
 
-### Defensive Publication Covenant (35 U.S.C. § 102 & EPC Art. 54)
-This repository, its architectural topology, mathematical models, and hardware specifications represent **public defensive prior art** authored by **Tanish Sharma**.
+### Prior Art Defensive Publication Covenant (35 U.S.C. § 102 & EPC Art. 54)
+This repository, its architectural topology, mathematical models, register memory maps, and hardware specifications represent **public defensive prior art** authored by **Tanish Sharma** (`OfficialTanishSharma`).
 
-- **Anti-Patent Trolling:** Any subsequent patent filings attempting to claim subterranean lightning interception via multi-stage capacitive shunt division are invalidated by this public timestamp.
+- **Defensive Bitstream Ledger:** All linear formulations and control parameters are cryptographically committed to the public Git ledger to establish unassailable prior art under 35 U.S.C. § 102.
+- **Anti-Patent Trolling:** Any subsequent patent filings attempting to claim subterranean lightning interception via multi-stage capacitive shunt division or inductive damping topologies are legally invalidated by this public timestamp.
 - **Copyleft Enforcement:** All implementations, derivative circuit schematics, and simulation tooling are licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**.
+

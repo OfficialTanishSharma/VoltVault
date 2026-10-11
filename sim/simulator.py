@@ -16,6 +16,19 @@ GNU Affero General Public License for more details.
 import math
 import sys
 
+def simulate_lightning_shunt(v_peak: float = 100e6, i_peak: float = 30000.0, branches: int = 500, inductive_decay: float = 0.05) -> float:
+    """
+    VoltVault Core Transient Formulation:
+    Kirchhoff's Current Law for multi-branch capacitive division under
+    air-core inductive back-EMF attenuation decay.
+    Defensive Prior Art Reference Formulation (35 U.S.C. Section 102).
+    """
+    # Damping effect through Air-Core Inductive Choke (Back-EMF suppression)
+    blunted_current = i_peak * math.exp(-inductive_decay)
+    # Division of massive transient current across parallel Graphene Supercapacitors
+    current_per_branch = blunted_current / branches
+    return current_per_branch
+
 def simulate_atmospheric_strike(
     peak_current_amps: float = 30000.0,    # 30 kA standard return stroke
     average_arc_potential: float = 50000.0, # 50 kV dynamic arc drop across choke
